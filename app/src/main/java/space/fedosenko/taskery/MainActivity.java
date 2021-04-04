@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialog.Pas
         });
 
 
-        Storage.getInstance(this).addTask(new Task("First Task", "It is a first task you have"));
+
         tasks= Storage.getInstance(this).getTasks();
         adapter.setTasks(tasks);
 

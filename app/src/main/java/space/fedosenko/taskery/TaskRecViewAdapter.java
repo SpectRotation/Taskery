@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import space.fedosenko.taskery.Model.Helping.Task;
+import space.fedosenko.taskery.Model.Storage;
 
 public class TaskRecViewAdapter extends RecyclerView.Adapter<TaskRecViewAdapter.ViewHolder> {
     private static final String TAG = "TaskRecViewAdapter";
@@ -56,8 +57,8 @@ public class TaskRecViewAdapter extends RecyclerView.Adapter<TaskRecViewAdapter.
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Storage.getInstance(mContext).changeTaskState(position);
 
-                tasks.get(position).changeState();
                 notifyDataSetChanged();
                 Toast.makeText(mContext, tasks.get(position).getName()+" is selected", Toast.LENGTH_SHORT).show();
             }
@@ -66,7 +67,7 @@ public class TaskRecViewAdapter extends RecyclerView.Adapter<TaskRecViewAdapter.
         holder.btDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tasks.remove(position);
+                Storage.getInstance(mContext).removeTask(position);
                 notifyDataSetChanged();
             }
         });
