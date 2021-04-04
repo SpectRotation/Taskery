@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialog.Pas
         });
 
 
-        Storage.getInstance().addTask(new Task("First Task", "It is a first task you have"));
-        tasks= Storage.getInstance().getTasks();
+        Storage.getInstance(this).addTask(new Task("First Task", "It is a first task you have"));
+        tasks= Storage.getInstance(this).getTasks();
         adapter.setTasks(tasks);
 
         floatingActionButton = findViewById(R.id.floatingActionButton);
@@ -68,6 +68,6 @@ public class MainActivity extends AppCompatActivity implements NewTaskDialog.Pas
 
     @Override
     public void getPlan(Task task) {
-        Storage.getInstance().addTask(task);
+        Storage.getInstance(this).addTask(task);
     }
 }

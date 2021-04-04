@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +62,14 @@ public class TaskRecViewAdapter extends RecyclerView.Adapter<TaskRecViewAdapter.
                 Toast.makeText(mContext, tasks.get(position).getName()+" is selected", Toast.LENGTH_SHORT).show();
             }
         });
+
+        holder.btDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tasks.remove(position);
+                notifyDataSetChanged();
+            }
+        });
     }
 
     @Override
@@ -75,10 +85,13 @@ public class TaskRecViewAdapter extends RecyclerView.Adapter<TaskRecViewAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView parent;
         private TextView txtName;
+        private ImageView btDelete;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             parent = itemView.findViewById(R.id.parent);
             txtName = itemView.findViewById(R.id.tv_name);
+            btDelete = itemView.findViewById(R.id.btn_delete);
         }
     }
 }
